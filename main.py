@@ -4,7 +4,7 @@ menu = xbarmenu.Menu()
 outdoor_data = services.get_outdoor_measures()
 indoor_data = services.get_indoor_measures()
 
-services.display_leader_measures(outdoor_data, menu)
+services.display_leader_measures(outdoor_data, indoor_data, menu)
 
 outdoor_menu = menu.add_item('☁️ Outdoor')
 services.display_outdoor_measures(outdoor_data, outdoor_menu)

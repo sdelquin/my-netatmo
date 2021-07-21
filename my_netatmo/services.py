@@ -27,15 +27,17 @@ def timestamp_to_hour(timestamp: int):
     return datetime.fromtimestamp(timestamp).strftime('%H:%M')
 
 
-def display_leader_measures(data: dict, menu: xbarmenu.Menu):
-    temp = data['Temperature']
-    temp_trend = MEASURES_TRENDS.get(data['temp_trend'], '')
-    temp_display = f'{temp}º {temp_trend}'.strip()
+def display_leader_measures(outdoor_data: dict, indoor_data: dict, menu: xbarmenu.Menu):
+    outdoor_temp = outdoor_data['Temperature']
+    indoor_temp = indoor_data['Temperature']
+    temp_diff = 'up' if outdoor_temp - indoor_temp > 0 else 'down'
+    temp_diff = MEASURES_TRENDS.get(temp_diff, '')
+    temp_display = f'{outdoor_temp}º {temp_diff}'.strip()
     menu.add_item(temp_display)
 
     menu.add_sep()
 
-    last_update = timestamp_to_hour(data['time_utc'])
+    last_update = timestamp_to_hour(outdoor_data['time_utc'])
     last_update_display = f'Last update: {last_update}h'
     menu.add_item(last_update_display)
 
