@@ -14,9 +14,9 @@ def get_measures(device: str):
     ws.get_data()
     response = ws.station_by_name()
     if device == 'INDOOR':
-        data = response.get('dashboard_data', NA_VALUE)
+        data = response['dashboard_data']
     elif device == 'OUTDOOR':
-        data = response['modules'][0].get('dashboard_data', NA_VALUE)
+        data = response['modules'][0]['dashboard_data']
     return data
 
 

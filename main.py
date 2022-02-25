@@ -1,13 +1,12 @@
-import requests
-
 from my_netatmo import services, xbarmenu
 
 menu = xbarmenu.Menu()
 try:
     outdoor_data = services.get_outdoor_measures()
     indoor_data = services.get_indoor_measures()
-except requests.exceptions.ConnectionError:
+except Exception as err:
     menu.add_item('⚠️ NA')
+    menu.add_item(err)
 else:
     services.display_leader_measures(outdoor_data, indoor_data, menu)
 
