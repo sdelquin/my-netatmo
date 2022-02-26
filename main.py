@@ -6,7 +6,7 @@ try:
     indoor_data = services.get_indoor_measures()
 except Exception as err:
     menu.add_item('⚠️ NA')
-    menu.add_item(err)
+    menu.add_item(str(err))
 else:
     services.display_leader_measures(outdoor_data, indoor_data, menu)
 
