@@ -1,12 +1,15 @@
+import traceback
+
 from my_netatmo import services, xbarmenu
 
 menu = xbarmenu.Menu()
 try:
     outdoor_data = services.get_outdoor_measures()
     indoor_data = services.get_indoor_measures()
-except Exception as err:
+except Exception:
     menu.add_item('⚠️ NA')
-    menu.add_item(str(err))
+    menu.add_sep()
+    menu.add_item(traceback.format_exc())
 else:
     services.display_leader_measures(outdoor_data, indoor_data, menu)
 
