@@ -105,7 +105,7 @@ def display_indoor_measures(data: dict, menu: xbarmenu.Menu):
     except KeyError:
         when_min_temp = NA_VALUE
     min_temp = data.get('min_temp', NA_VALUE)
-    min_temp_display = f'↓ {min_temp}º ({when_min_temp}h)'
+    min_temp_display = f'↓ {min_temp}º ({when_min_temp})'
     menu.add_item(min_temp_display)
 
     try:
@@ -114,5 +114,5 @@ def display_indoor_measures(data: dict, menu: xbarmenu.Menu):
     except KeyError:
         when_max_temp = NA_VALUE
     max_temp = data.get('max_temp', NA_VALUE)
-    max_temp_display = f'↑ {max_temp}º ({when_max_temp}h)'
+    max_temp_display = f'↑ {max_temp}º ({when_max_temp})'
     menu.add_item(max_temp_display)
